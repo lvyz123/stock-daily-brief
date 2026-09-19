@@ -1,0 +1,86 @@
+name: 每日股市简报
+
+on:
+  schedule:
+    # GitHub 定时任务用 UTC，而且经常延迟几分钟到二十几分钟，所以提前触发，生成完再等到 18:30 发送
+    - cron: "5 10 * * *"   # 北京时间 18:05，主触发
+    - cron: "35 10 * * *"  # 北京时间 18:35，兜底：主触发丢失时补发；当天已发送则直接退出
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "只生成预览（在本次运行的 Artifacts 里下载），不发邮件"
+        type: boolean
+        default: true
+      force:
+        description: "忽略“非交易日”检查，用各市场最近一个交易日生成"
+        type: boolean
+        default: false
+      skip_llm:
+        description: "不调用 Claude（只测数据和邮件排版，不产生 API 费用）"
+        type: boolean
+        default: false
+      archive:
+        description: "发送后存档（勾选后，当天的定时任务会因为“已发送”而跳过）"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 生成并发送
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          ARGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ARGS="--no-wait"
+            [ "${{ inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+            [ "${{ inputs.force }}" = "true" ] && ARGS="$ARGS --force"
+            [ "${{ inputs.skip_llm }}" = "true" ] && ARGS="$ARGS --skip-llm"
+            [ "${{ inputs.archive }}" != "true" ] && ARGS="$ARGS --no-archive"
+          fi
+          python main.py $ARGS
+
+      - name: 上传预览
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview
+          path: out/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: 存档到仓库
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports
+          if ! git diff --cached --quiet; then
+            git commit -m "简报存档 $(TZ=Asia/Shanghai date +%F)"
+            git pull --rebase
+            git push
+          fi

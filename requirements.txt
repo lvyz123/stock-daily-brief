@@ -1,0 +1,7 @@
+anthropic>=1.7,<2
+yfinance>=1.7
+pandas>=2.2
+exchange_calendars>=4.13
+markdown>=3.6
+requests>=2.32
+tzdata
