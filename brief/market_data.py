@@ -199,6 +199,8 @@ class Quote:
     vs_ma200: float | None
     off_high: float | None  # 相对 52 周最高价
     stale: bool  # 最新 K 线早于应有的交易日
+    chg_prev_5d: float | None = None  # 再上一周（第 6~10 个交易日）的涨跌幅
+    vol_ratio_week: float | None = None  # 本周日均量 / 前四周日均量
 
 
 def _pct(a: float, b: float) -> float | None:
@@ -239,6 +241,10 @@ def compute_quote(code: str, name: str, df: pd.DataFrame, session_date: date | N
     def vs_ma(n: int) -> float | None:
         return _pct(last, float(close.iloc[-n:].mean())) if len(close) >= n else None
 
+    vol_ratio_week = None
+    if len(vol) > 25 and vol.iloc[-25:-5].mean() > 0:
+        vol_ratio_week = float(vol.iloc[-5:].mean() / vol.iloc[-25:-5].mean())
+
     high_52w = df["high"].iloc[-250:].max()
     return Quote(
         code=code, name=name, last_date=last_date, close=last,
@@ -247,6 +253,8 @@ def compute_quote(code: str, name: str, df: pd.DataFrame, session_date: date | N
         vs_ma50=vs_ma(50), vs_ma200=vs_ma(200),
         off_high=_pct(last, float(high_52w)),
         stale=session_date is not None and last_date < session_date,
+        chg_prev_5d=_pct(float(close.iloc[-6]), float(close.iloc[-11])) if len(close) > 10 else None,
+        vol_ratio_week=vol_ratio_week,
     )
 
 
@@ -282,6 +290,9 @@ class GroupStat:
     chg_20d: float | None
     best: Quote | None
     worst: Quote | None
+    chg_prev_5d: float | None = None
+    best_week: Quote | None = None
+    worst_week: Quote | None = None
 
 
 def _mean(values: list[float | None]) -> float | None:
@@ -294,6 +305,7 @@ def group_stats(market: Market, quotes: dict[str, Quote]) -> list[GroupStat]:
     for g in market.groups:
         qs = [quotes[c] for c in g.members if c in quotes and not quotes[c].stale]
         with_1d = [q for q in qs if q.chg_1d is not None]
+        with_5d = [q for q in qs if q.chg_5d is not None]
         stats.append(GroupStat(
             name=g.name, focus=g.focus, n=len(qs),
             chg_1d=_mean([q.chg_1d for q in qs]),
@@ -301,6 +313,9 @@ def group_stats(market: Market, quotes: dict[str, Quote]) -> list[GroupStat]:
             chg_20d=_mean([q.chg_20d for q in qs]),
             best=max(with_1d, key=lambda q: q.chg_1d) if with_1d else None,
             worst=min(with_1d, key=lambda q: q.chg_1d) if with_1d else None,
+            chg_prev_5d=_mean([q.chg_prev_5d for q in qs]),
+            best_week=max(with_5d, key=lambda q: q.chg_5d) if with_5d else None,
+            worst_week=min(with_5d, key=lambda q: q.chg_5d) if with_5d else None,
         ))
     return stats
 

@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-20",
+  "period": "2026-09-14 ~ 2026-09-18",
+  "subject": "存储领涨、设备待修复；美联储加息后利率敏感板块承压",
+  "artifact": "https://claude.ai/artifact/DXENexUEkPSxUVRRZkMabg",
+  "picks": [
+    {"market": "US", "code": "AMAT", "name": "应用材料", "segment": "半导体设备", "horizon": "1-2周", "confidence": "中", "thesis": "周五放量反弹，20日仍-5.9%、位于50日线下方11%，存储扩产传导至WFE", "ref_price": 444.57},
+    {"market": "US", "code": "LRCX", "name": "泛林", "segment": "半导体设备", "horizon": "1-2周", "confidence": "中", "thesis": "周五+7.0%领涨设备组，两周前上调2026 WFE展望", "ref_price": 288.11},
+    {"market": "US", "code": "KLAC", "name": "科磊", "segment": "半导体设备", "horizon": "1-2周", "confidence": "中", "thesis": "设备组补涨，位于50日线下方8.2%", "ref_price": 176.99},
+    {"market": "US", "code": "MU", "name": "美光", "segment": "存储/HBM", "horizon": "1-2周", "confidence": "中", "thesis": "10月1日财报为催化剂，短期存储缺货；中期注意长鑫科技供给压力", "ref_price": 1016.0},
+    {"market": "US", "code": "AVGO", "name": "博通", "segment": "定制ASIC/互连", "horizon": "1-2周", "confidence": "中", "thesis": "同组CRDO/ALAB/MRVL大涨而本周-1.2%，RSI46、低于50日线5.8%，补涨窗口", "ref_price": 357.61},
+    {"market": "US", "code": "CIBR", "name": "网络安全ETF", "segment": "网络安全", "horizon": "1-2周", "confidence": "中", "thesis": "本周+5.8%、距52周高仅-2.9%，与利率脱敏", "ref_price": 99.87},
+    {"market": "HK", "code": "hk00981", "name": "中芯国际", "segment": "半导体", "horizon": "1-2周", "confidence": "中", "thesis": "承接国产扩产逻辑，仍低于50日线5.0%，位置比A股同类干净", "ref_price": 65.15},
+    {"market": "CN", "code": "sz159516", "name": "半导体设备ETF", "segment": "半导体设备", "horizon": "观察", "confidence": "观察", "thesis": "方向对但本周已+11.6%且长假前资金收缩，回调至50日线附近再考虑", "ref_price": 0.729}
+  ],
+  "avoid": ["CEG", "VST", "URA", "ON", "A股传媒", "A股消费"]
+}
