@@ -62,11 +62,23 @@ cd /d/stock-daily-brief && ./.venv/Scripts/python.exe -m brief.weekly
 - 每条推荐标注时间窗口和信心。
 - 底部放免责声明和数据截止时间。
 
-页面写到临时目录后发布，然后在对话里给出链接，并附 3–5 句话的核心结论，方便不点开也能看懂大意。
+页面先写到临时目录（这份 HTML 文件后面还要用来生成 PDF，**不要删**），发布后在对话里给出链接，并附 3–5 句话的核心结论，方便不点开也能看懂大意。
 
-### 5. 存档
+### 5. 导出 PDF（每期必做）
 
-报告正文（Markdown）存到 `D:/stock-daily-brief/reports/weekly-YYYY-MM-DD.md`（北京日期），推荐列表存到同目录的 `weekly-picks-YYYY-MM-DD.json`（字段：market、code、name、segment、horizon、confidence、thesis、ref_price）。
+用上一步那份 HTML 生成可当邮件附件分享的本地 PDF：
+
+```bash
+cd /d/stock-daily-brief && ./.venv/Scripts/python.exe -m brief.to_pdf "<第4步的HTML路径>" --date YYYY-MM-DD
+```
+
+输出 `reports/weekly-YYYY-MM-DD.pdf`（A4、强制浅色、系统中文字体，不依赖 Google Fonts）和配套的 `reports/weekly-YYYY-MM-DD.html`。生成后确认 PDF 大于 100KB、页数在 4–10 页之间（用 `brief.to_pdf` 的输出即可判断），然后用 SendUserFile 把 PDF 发给用户，并说明文件路径。
+
+调打印排版改 `brief/to_pdf.py` 里的 `PRINT_STYLE`。
+
+### 6. 存档
+
+报告正文（Markdown）存到 `D:/stock-daily-brief/reports/weekly-YYYY-MM-DD.md`（北京日期），推荐列表存到同目录的 `weekly-picks-YYYY-MM-DD.json`（字段：market、code、name、segment、horizon、confidence、thesis、ref_price）。每期 `reports/` 下应有四个文件：`.md`、`.json`、`.html`、`.pdf`。
 
 下次生成周报时，先看 `D:/stock-daily-brief/reports/` 里最近一期：在新报告里用一小节回顾上期推荐的表现（用数据包里的最新价格对比 ref_price），并说明观点是否变化、为什么。
 

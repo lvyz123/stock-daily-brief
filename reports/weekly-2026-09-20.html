@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>每周股市简报 2026-09-20</title>
+<style>img{max-width:100%}body{margin:0}</style>
+</head>
+<body>
+<title>AI 与半导体周报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+  :root {
+    --bg: #f5f4f0;
+    --surface: #fffefb;
+    --surface-2: #efede7;
+    --ink: #1c1f24;
+    --ink-2: #414750;
+    --muted: #767c86;
+    --line: #dedbd3;
+    --line-strong: #c4c0b6;
+    --accent: #1f4e79;
+    --accent-soft: #e6eef5;
+    --up: #c62828;
+    --up-soft: #f6e3e3;
+    --down: #14855c;
+    --down-soft: #dff0e8;
+    --flat: #8b9099;
+    --serif: "Source Serif 4", "Songti SC", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161a;
+      --surface: #1b1e23;
+      --surface-2: #23272e;
+      --ink: #e9e7e1;
+      --ink-2: #c3c7cd;
+      --muted: #949aa4;
+      --line: #2e333b;
+      --line-strong: #3d434c;
+      --accent: #8ab6dd;
+      --accent-soft: #1d2a36;
+      --up: #f0655f;
+      --up-soft: #34201f;
+      --down: #3fbd8b;
+      --down-soft: #162c25;
+      --flat: #868c96;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161a;
+    --surface: #1b1e23;
+    --surface-2: #23272e;
+    --ink: #e9e7e1;
+    --ink-2: #c3c7cd;
+    --muted: #949aa4;
+    --line: #2e333b;
+    --line-strong: #3d434c;
+    --accent: #8ab6dd;
+    --accent-soft: #1d2a36;
+    --up: #f0655f;
+    --up-soft: #34201f;
+    --down: #3fbd8b;
+    --down-soft: #162c25;
+    --flat: #868c96;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 28px 56px;
+  }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  .flat { color: var(--flat); }
+
+  /* masthead */
+  .masthead { border-bottom: 3px solid var(--ink); padding-bottom: 14px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted); margin: 0 0 6px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 700; font-size: clamp(30px, 6vw, 42px);
+    line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -.01em;
+  }
+  .dateline {
+    display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px;
+    font-family: var(--mono); font-size: 12px; color: var(--muted);
+  }
+
+  h2 {
+    font-size: 20px; font-weight: 700; margin: 44px 0 4px;
+    padding-bottom: 8px; border-bottom: 2px solid var(--line-strong);
+    display: flex; align-items: baseline; gap: 10px; text-wrap: balance;
+  }
+  h2 .tag {
+    font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .08em;
+    color: var(--muted); text-transform: uppercase;
+  }
+  h3 { font-size: 16px; font-weight: 700; margin: 26px 0 2px; color: var(--ink); }
+  h4 {
+    font-size: 13px; font-weight: 700; margin: 18px 0 2px; color: var(--accent);
+    letter-spacing: .02em;
+  }
+  p { margin: 8px 0; color: var(--ink-2); }
+  section > p:first-of-type { margin-top: 10px; }
+  strong { color: var(--ink); font-weight: 600; }
+  a { color: var(--accent); }
+
+  /* 要点 */
+  .keypoints { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+  .keypoints li {
+    display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); padding: 12px 14px;
+  }
+  .keypoints .n {
+    font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 3px;
+  }
+  .keypoints p { margin: 0; }
+
+  /* 快照 */
+  .snapshot { display: grid; gap: 14px; margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .market-card { background: var(--surface); border: 1px solid var(--line); padding: 12px 14px 14px; }
+  .market-card h5 {
+    margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .04em;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+  }
+  .market-card h5 span { font-family: var(--mono); font-size: 11px; font-weight: 400; color: var(--muted); }
+  .rows { display: grid; gap: 5px; }
+  .row {
+    display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: baseline;
+    font-size: 13px; padding-bottom: 5px; border-bottom: 1px dotted var(--line);
+  }
+  .row:last-child { border-bottom: none; padding-bottom: 0; }
+  .row .v { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px; }
+  .row .c { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; min-width: 56px; text-align: right; }
+  .note { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+
+  /* 条形图 */
+  figure { margin: 18px 0 0; }
+  figcaption { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .chart { display: grid; gap: 7px; }
+  .bar-row { display: grid; grid-template-columns: 116px 1fr 52px; gap: 10px; align-items: center; font-size: 13px; }
+  .bar-row .label { text-align: right; color: var(--ink-2); font-size: 12.5px; line-height: 1.3; }
+  .track { position: relative; height: 15px; background: var(--surface-2); }
+  .track::before {
+    content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px;
+    width: 1px; background: var(--line-strong);
+  }
+  .bar { position: absolute; top: 2px; bottom: 2px; }
+  .bar.pos { left: 50%; background: var(--up); border-radius: 0 3px 3px 0; }
+  .bar.neg { right: 50%; background: var(--down); border-radius: 3px 0 0 3px; }
+  .bar-row .val { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 12.5px; font-weight: 600; }
+  .axis {
+    display: grid; grid-template-columns: 116px 1fr 52px; gap: 10px;
+    font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 6px;
+  }
+  .axis .scale { display: flex; justify-content: space-between; }
+
+  /* 表格 */
+  .table-wrap { overflow-x: auto; margin: 14px 0 0; border: 1px solid var(--line); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 520px; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th {
+    background: var(--surface-2); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+  .pill {
+    display: inline-block; font-family: var(--mono); font-size: 11px; padding: 1px 7px;
+    border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap;
+  }
+  .pill.hi { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+
+  /* 提示块 */
+  .callout {
+    background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--line-strong);
+    padding: 12px 14px; margin: 18px 0 0;
+  }
+  .callout h4 { margin-top: 0; color: var(--ink); }
+  .callout p { margin: 4px 0 0; font-size: 14px; }
+  .callout.risk { border-left-color: var(--up); }
+
+  .cal { display: grid; gap: 8px; margin-top: 14px; }
+  .cal-item {
+    display: grid; grid-template-columns: 92px 1fr; gap: 12px; font-size: 14px;
+    padding-bottom: 8px; border-bottom: 1px dotted var(--line);
+  }
+  .cal-item:last-child { border-bottom: none; }
+  .cal-item .d { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 600; padding-top: 2px; }
+  .cal-item p { margin: 0; }
+
+  footer {
+    margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--muted); line-height: 1.7;
+  }
+
+  @media (max-width: 520px) {
+    .bar-row, .axis { grid-template-columns: 88px 1fr 46px; }
+    .bar-row .label { font-size: 11.5px; }
+    .cal-item { grid-template-columns: 74px 1fr; gap: 8px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Weekly Brief · 第 1 期</p>
+    <h1>AI 与半导体周报</h1>
+    <div class="dateline">
+      <span>复盘区间 2026-09-14 → 09-18</span>
+      <span>数据截止 09-18 收盘</span>
+      <span>美股 · 港股 · A股</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>本周要点</h2>
+    <ol class="keypoints">
+      <li><span class="n">01</span><p><strong>美联储 9 月 16 日加息 25 个基点至 3.75%–4.00%</strong>（12–0 全票，声明称“将实现物价稳定”）。10 年美债收益率 <span class="num">4.998%</span> 贴近 5%，美元 <span class="num up">+1.1%</span>。市场随即分化：纳指 <span class="num up">+0.7%</span>、费半 <span class="num up">+0.8%</span>，而道指 <span class="num down">-1.7%</span>、罗素2000 <span class="num down">-1.5%</span>、公用事业 <span class="num down">-3.0%</span>。</p></li>
+      <li><span class="n">02</span><p><strong>AI/半导体内部发生了一次彻底的轮动</strong>：上周领涨的 AI 电力（本周 <span class="num down">-4.1%</span>）、半导体设备（<span class="num down">-2.3%</span>）、AI 服务器（<span class="num down">-1.5%</span>）集体回吐，资金转向存储（<span class="num up">+4.0%</span>）、算力 GPU（<span class="num up">+5.1%</span>）和定制 ASIC（<span class="num up">+3.6%</span>）。费半在周一大跌后连涨四天。</p></li>
+      <li><span class="n">03</span><p><strong>存储是本周唯一贯穿三地的主线。</strong>美股闪迪 <span class="num up">+9.7%</span>（纳入标普100）、美光 <span class="num up">+4.2%</span>（短期存储缺货）；A股半导体设备ETF <span class="num up">+11.6%</span>、科创50 <span class="num up">+6.4%</span>，国产存储扩产预期是主要推手。</p></li>
+      <li><span class="n">04</span><p><strong>AI 的融资成本第一次成为独立的风险因子。</strong>CoreWeave <span class="num down">-8.6%</span>（37 亿美元可转债），甲骨文 <span class="num down">-1.8%</span> 且已较 52 周高点回撤 <span class="num">-55%</span>。算力需求的叙事没变，但为算力融资的代价开始被定价。</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>行情快照 <span class="tag">红涨绿跌 · 周度</span></h2>
+    <div class="snapshot">
+      <div class="market-card">
+        <h5>美股 <span>09-18 收盘</span></h5>
+        <div class="rows">
+          <div class="row"><span>标普500</span><span class="v">7,650</span><span class="c down">-0.1%</span></div>
+          <div class="row"><span>纳斯达克</span><span class="v">26,523</span><span class="c up">+0.7%</span></div>
+          <div class="row"><span>道琼斯</span><span class="v">51,683</span><span class="c down">-1.7%</span></div>
+          <div class="row"><span>罗素2000</span><span class="v">2,860</span><span class="c down">-1.5%</span></div>
+          <div class="row"><span>费城半导体</span><span class="v">11,922</span><span class="c up">+0.8%</span></div>
+        </div>
+      </div>
+      <div class="market-card">
+        <h5>港股 <span>09-18 收盘</span></h5>
+        <div class="rows">
+          <div class="row"><span>恒生指数</span><span class="v">24,751</span><span class="c down">-0.2%</span></div>
+          <div class="row"><span>恒生科技</span><span class="v">4,406</span><span class="c up">+2.0%</span></div>
+          <div class="row"><span>国企指数</span><span class="v">8,225</span><span class="c down">-0.3%</span></div>
+          <div class="row"><span>半导体（等权）</span><span class="v">3 只</span><span class="c up">+3.5%</span></div>
+          <div class="row"><span>AI硬件（等权）</span><span class="v">4 只</span><span class="c up">+4.2%</span></div>
+        </div>
+      </div>
+      <div class="market-card">
+        <h5>A股 <span>09-18 收盘</span></h5>
+        <div class="rows">
+          <div class="row"><span>上证指数</span><span class="v">3,912</span><span class="c up">+0.6%</span></div>
+          <div class="row"><span>创业板指</span><span class="v">3,373</span><span class="c up">+1.5%</span></div>
+          <div class="row"><span>科创50</span><span class="v">1,653</span><span class="c up">+6.4%</span></div>
+          <div class="row"><span>沪深300</span><span class="v">4,507</span><span class="c down">-0.1%</span></div>
+          <div class="row"><span>半导体/芯片ETF</span><span class="v">4 只</span><span class="c up">+8.9%</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">背景：VIX <span class="num">14.81</span>（<span class="num down">-6.5%</span>）、10 年美债 <span class="num">4.998%</span>、美元指数 <span class="num">100.22</span>（<span class="num up">+1.1%</span>）、原油 <span class="num">96.08</span>（<span class="num down">-4.0%</span>，但近 20 日仍 <span class="num up">+9.4%</span>）、黄金 <span class="num">4,425</span>（<span class="num up">+0.4%</span>）。</p>
+  </section>
+
+  <section>
+    <h2>美股 <span class="tag">本周 55% 篇幅</span></h2>
+
+    <h3>大盘：加息之后的一次“质量分化”</h3>
+    <p>加息落地后，指数层面几乎没跌，分化却很剧烈：<strong>利率敏感和顺周期的资产被卖出</strong>（道指 <span class="num down">-1.7%</span>、罗素2000 <span class="num down">-1.5%</span>、金融 <span class="num down">-2.4%</span>、公用事业 <span class="num down">-3.0%</span>、地产 <span class="num down">-2.0%</span>），<strong>现金流确定、且与利率脱敏的科技资产被买入</strong>（科技 ETF <span class="num up">+1.0%</span>、软件 ETF <span class="num up">+2.8%</span>）。VIX 回落到 <span class="num">14.8</span>，说明这不是避险，而是主动的结构调整。</p>
+
+    <figure>
+      <figcaption>美股 AI/半导体细分板块 · 本周等权涨跌幅（成分股等权平均）</figcaption>
+      <div class="chart">
+        <div class="bar-row"><span class="label">算力 GPU</span><span class="track"><span class="bar pos" style="width:42.5%"></span></span><span class="val up">+5.1%</span></div>
+        <div class="bar-row"><span class="label">存储 / HBM</span><span class="track"><span class="bar pos" style="width:33.3%"></span></span><span class="val up">+4.0%</span></div>
+        <div class="bar-row"><span class="label">定制 ASIC / 互连</span><span class="track"><span class="bar pos" style="width:30.0%"></span></span><span class="val up">+3.6%</span></div>
+        <div class="bar-row"><span class="label">晶圆代工 / IDM</span><span class="track"><span class="bar pos" style="width:21.7%"></span></span><span class="val up">+2.6%</span></div>
+        <div class="bar-row"><span class="label">AI 软件 / 应用</span><span class="track"><span class="bar pos" style="width:9.2%"></span></span><span class="val up">+1.1%</span></div>
+        <div class="bar-row"><span class="label">光互连 / 网络</span><span class="track"><span class="bar pos" style="width:8.3%"></span></span><span class="val up">+1.0%</span></div>
+        <div class="bar-row"><span class="label">EDA / IP</span><span class="track"><span class="bar neg" style="width:3.3%"></span></span><span class="val down">-0.4%</span></div>
+        <div class="bar-row"><span class="label">云 / 超大规模</span><span class="track"><span class="bar neg" style="width:8.3%"></span></span><span class="val down">-1.0%</span></div>
+        <div class="bar-row"><span class="label">AI 服务器</span><span class="track"><span class="bar neg" style="width:12.5%"></span></span><span class="val down">-1.5%</span></div>
+        <div class="bar-row"><span class="label">半导体设备</span><span class="track"><span class="bar neg" style="width:19.2%"></span></span><span class="val down">-2.3%</span></div>
+        <div class="bar-row"><span class="label">模拟 / 其他芯片</span><span class="track"><span class="bar neg" style="width:25.8%"></span></span><span class="val down">-3.1%</span></div>
+        <div class="bar-row"><span class="label">AI 电力 / 散热</span><span class="track"><span class="bar neg" style="width:34.2%"></span></span><span class="val down">-4.1%</span></div>
+      </div>
+      <div class="axis"><span></span><span class="scale"><span>-6%</span><span>0</span><span>+6%</span></span><span></span></div>
+    </figure>
+
+    <h3>AI 与半导体：一周之内换了主线</h3>
+
+    <h4>存储 / HBM　<span class="num up">+4.0%</span>（上周 <span class="num up">+3.0%</span>）</h4>
+    <p>本周最强的主线。闪迪 <span class="num up">+9.7%</span>，直接催化是周四被纳入标普100 指数（同日耐克被剔除）带来的被动资金买盘；美光 <span class="num up">+4.2%</span> 则来自短期存储芯片缺货的报道，希捷 <span class="num up">+3.4%</span>，只有西部数据 <span class="num down">-1.3%</span> 掉队。存储的逻辑已经从“AI 拉动 HBM”扩散到“常规 DRAM/NAND 也缺货”，这是弹性更大的一段。要注意闪迪股价已高于 50 日线 <span class="num">+19.1%</span>、RSI 61，短线追高的性价比不高。</p>
+
+    <h4>算力 GPU　<span class="num up">+5.1%</span>（上周 <span class="num up">+4.3%</span>）</h4>
+    <p>AMD <span class="num up">+8.5%</span> 连续两周大涨，近 20 日 <span class="num up">+19.2%</span>。核心驱动是 OpenAI 那份 6GW 协议里的首个 1GW MI450 部署正好落在 2026 年下半年，兑现窗口打开；周五又叠加了 2027 年游戏 GPU 独占发布的传闻（这条只是情绪加成，不是基本面）。英伟达 <span class="num up">+1.8%</span> 涨得温和，距 52 周高点仅 <span class="num">-6.0%</span>，是这一轮里“没怎么透支”的大市值标的。</p>
+
+    <h4>定制 ASIC / 互连　<span class="num up">+3.6%</span></h4>
+    <p>Credo <span class="num up">+7.9%</span>、Astera Labs <span class="num up">+4.1%</span>、迈威尔 <span class="num up">+3.5%</span> 都在涨，唯独<strong>博通 <span class="num down">-1.2%</span></strong>，RSI 46、股价低于 50 日线 <span class="num">-5.8%</span>。同一条产业链里龙头落后小票 5–9 个百分点，通常不会持续太久。</p>
+
+    <h4>半导体设备　<span class="num down">-2.3%</span>（上周 <span class="num up">+5.3%</span>）</h4>
+    <p>周度看是回调（泛林 <span class="num down">-3.4%</span>、应材 <span class="num down">-2.6%</span>、科磊 <span class="num down">-2.0%</span>），但<strong>周五单日出现放量反弹</strong>：泛林 <span class="num up">+7.0%</span>、应材 <span class="num up">+4%</span>、科磊 <span class="num up">+3%</span>。这个组近 20 日仍是 <span class="num down">-5.9%</span>，多数个股还在 50 日线下方 6%–11%，是 AI 链里少数还没修复的位置。</p>
+
+    <h4>AI 电力 / 散热　<span class="num down">-4.1%</span>　本周最大的输家</h4>
+    <p>Constellation <span class="num down">-10.5%</span>、Vistra <span class="num down">-5.2%</span>、维谛 <span class="num down">-3.0%</span>，铀矿 ETF <span class="num down">-4.3%</span>。两层原因叠加：加息直接打击这类高杠杆、长久期的现金流资产；Constellation 自身还有收购燃气电厂带来的股权融资压制。在 10 年美债回落之前，这条支线不适合抄底。</p>
+
+    <h4>云 / 超大规模　<span class="num down">-1.0%</span></h4>
+    <p>内部同样分裂：谷歌 <span class="num up">+3.3%</span>、Meta <span class="num up">+2.7%</span>，而 CoreWeave <span class="num down">-8.6%</span>、甲骨文 <span class="num down">-1.8%</span>。分界线很清楚——<strong>自有现金流买算力的赢，靠举债买算力的输</strong>。CoreWeave 本周发了 37 亿美元可转债，市场立刻给了折价。</p>
+
+    <h3>其他值得一提的板块</h3>
+    <p><strong>网络安全（CIBR <span class="num up">+5.8%</span>）</strong>是本周非 AI 板块里最强的，近 20 日 <span class="num up">+6.9%</span>，距 52 周高点只有 <span class="num">-2.9%</span>，基本处在新高附近。它的现金流合同化程度高，对利率不敏感，在加息环境里是少数能走出独立行情的科技细分。</p>
+    <p><strong>比特币相关（IBIT <span class="num up">+5.1%</span>，近 20 日 <span class="num up">+11.7%</span>）</strong>逆着加息上涨，周五矿股和 MSTR 都有两位数涨幅——这更像流动性充裕下的风险偏好回归，波动大，只作提示。</p>
+    <p>反过来，<strong>航空国防（ITA <span class="num down">-2.4%</span>，RSI 26，近 20 日 <span class="num down">-10.0%</span>）</strong>已经跌到极度超卖，但中东局势仍是变量，属于“看得到位置、看不到催化剂”，先观察。太阳能 <span class="num down">-3.2%</span>、零售 <span class="num down">-3.3%</span>、住宅建筑 <span class="num down">-2.1%</span> 则是加息的直接受害者，没有参与价值。</p>
+
+    <h3>下周展望（09-21 → 09-25）</h3>
+
+    <h4>AI / 半导体的机会</h4>
+    <p><strong>1. 半导体设备是最清晰的补涨位置（1–2 周，信心中）。</strong>逻辑有三层：周五的放量反弹说明资金已经开始回补；存储扩产（美光、三星以及中国长鑫）会直接转化为 WFE 支出，泛林两周前刚上调了 2026 年 WFE 展望；位置上多数还在 50 日线下方。标的：应用材料、泛林、科磊，或用 SOXX / SMH 承接。<strong>失效条件</strong>：10 年美债继续上行突破 5.2%，或存储现货报价转弱。</p>
+    <p><strong>2. 美光是下一个明确催化剂（1–2 周，信心中）。</strong>财报在 <strong>10 月 1 日</strong>，本周已经 <span class="num up">+4.2%</span>、站上 50 日线 <span class="num">+9.5%</span>，短期缺货叙事有数据支撑。<strong>风险</strong>：一是财报落在 A 股长假期间；二是中国长鑫科技（688825.SS，7 月 27 日上市，市值约 3.77 万亿元）带来的中期供给压力，本周已有多家外媒把它当作美光的实质对手来讨论。</p>
+    <p><strong>3. 博通的补涨窗口（1–2 周，信心中）。</strong>同组小票都在涨、它独跌，RSI 46、低于 50 日线 <span class="num">-5.8%</span>、距 52 周高点 <span class="num">-27.8%</span>。定制 ASIC 的订单叙事没有变化，这更像资金短期集中在弹性品种上造成的错位。<strong>失效条件</strong>：跌破本周低点，或出现客户订单推迟的实质消息。</p>
+    <p><strong>4. 英伟达仍是最稳的底仓方向（观察）。</strong>本周只涨 <span class="num up">+1.8%</span>，没有透支，距 52 周高点 <span class="num">-6.0%</span>。下周没有公司层面的催化剂（财报在 11 月 18 日），更适合作为回调时的承接对象而不是追涨标的。</p>
+
+    <h4>其他机会</h4>
+    <p><strong>网络安全（CIBR，1–2 周，信心中）</strong>：加息周期里“高确定性 + 利率脱敏”的稀缺组合，且已在新高附近，趋势跟随的胜率高于板块轮动。</p>
+    <p>本周的 AI 电力、模拟芯片、铀/核电目前看不到反转催化，不建议在下周参与。</p>
+
+    <div class="callout risk">
+      <h4>需要警惕的三件事</h4>
+      <p><strong>一是利率</strong>：10 年美债 RSI 已经 69、贴着 5% 整数关口，继续上行会压制整个高估值科技板块。<strong>二是 AI 融资成本</strong>：本周市场开始给举债扩张的算力公司打折，如果下周再有类似的可转债/高收益债发行，情绪会扩散到 AI 服务器和 neocloud。<strong>三是叙事层面</strong>：AI 泡沫的质疑声本周明显变多（包括 Capital Economics 关于 30% 回撤的警告），这类讨论不改变基本面，但会放大波动。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>港股 <span class="tag">缩量，结构性</span></h2>
+    <p>恒指 <span class="num down">-0.2%</span>，恒生科技 <span class="num up">+2.0%</span>，但成交量能只有此前四周均值的 <span class="num">0.79–0.84</span> 倍——<strong>这是一次缩量的结构性反弹，不是资金回流</strong>。</p>
+    <p><strong>AI 硬件 <span class="num up">+4.2%</span>（全场最强）</strong>：联想集团单周 <span class="num up">+20.1%</span>，周五一天 <span class="num up">+9.5%</span>，驱动是沙特主权 AI 订单（对接 Vision 2030）、与 MemryX 的边缘 AI 合作，以及与 HL Klemove 在自动驾驶上的合作。主权 AI 这条线今年反复被验证，但联想 RSI 已到 72、股价高出 50 日线 <span class="num">+32%</span>，距 52 周高点只剩 <span class="num">-0.8%</span>，<strong>这个位置不适合追</strong>。</p>
+    <p><strong>半导体 <span class="num up">+3.5%</span></strong>：ASMPT <span class="num up">+3.9%</span>、华虹 <span class="num up">+3.4%</span>、中芯国际 <span class="num up">+3.2%</span>，跟随 A 股设备行情。中芯国际仍低于 50 日线 <span class="num">-5.0%</span>，位置比 A 股的同类标的干净，是港股里承接“国产半导体扩产”逻辑弹性较好的品种（1–2 周，信心中）。</p>
+    <p><strong>创新药 <span class="num up">+3.6%</span></strong>：药明生物 <span class="num up">+7.1%</span>、中国生物制药 <span class="num up">+4.2%</span>，属于上周 <span class="num down">-7.1%</span> 之后的超跌反弹，暂时还看不到新的基本面催化，不展开。</p>
+    <p><strong>互联网平台 <span class="num down">-1.3%</span></strong>：腾讯 <span class="num down">-2.2%</span>（RSI 37，低于 50 日线 <span class="num">-7.4%</span>）、美团 <span class="num down">-2.5%</span>（低于 50 日线 <span class="num">-12.7%</span>）、快手 <span class="num down">-1.7%</span>。整体处在下行趋势里，缩量阴跌，右侧信号还没出现——等腾讯站回 50 日线再谈。</p>
+    <p class="note">下周港股 5 个交易日正常交易（9/25 中秋不休市），10 月 1 日国庆休市一天。</p>
+  </section>
+
+  <section>
+    <h2>A股 <span class="tag">科创独强 · 长假在即</span></h2>
+    <p>本周是极致的结构性行情：科创50 <span class="num up">+6.4%</span>，而沪深300 <span class="num down">-0.1%</span>。<strong>半导体是唯一的主线</strong>——半导体设备ETF <span class="num up">+11.6%</span>、科创芯片ETF <span class="num up">+8.7%</span>、半导体ETF <span class="num up">+8.4%</span>；个股层面北方华创 <span class="num up">+8.3%</span>、寒武纪 <span class="num up">+7.0%</span>、中微公司 <span class="num up">+6.4%</span>、澜起科技 <span class="num up">+5.5%</span>。</p>
+    <p>推动力是<strong>国产存储扩产 + 设备国产化</strong>这条链：长鑫科技 7 月底上市后市值已近 3.8 万亿元，它的扩产预期直接指向国产设备订单，再叠加美股存储行情的传导。需要提醒的是，<strong>指数的量能比只有 <span class="num">0.82–0.89</span>，是缩量上涨</strong>，主要板块并没有增量资金进场，这决定了它更像脉冲而不是趋势的起点。</p>
+    <p><strong>光模块内部已经开始高位换手</strong>：新易盛 <span class="num up">+5.2%</span>，但中际旭创 <span class="num">0.0%</span>（上周 <span class="num up">+13.8%</span>）、沪电股份 <span class="num down">-3.7%</span>（上周 <span class="num up">+15.0%</span>）。这种“上周的领涨股本周不涨”的组合，通常意味着这一波行情进入后段。</p>
+    <p>周五的概念涨幅榜里，华为海思 <span class="num up">+3.3%</span>、无线耳机 <span class="num up">+3.6%</span>、智能穿戴 <span class="num up">+3.0%</span> 靠前，说明资金正在从芯片制造向消费电子/华为链扩散，这是板块行情后期的典型特征。</p>
+    <div class="callout">
+      <h4>下周 A 股的结构：4 个交易日，然后是长假</h4>
+      <p>下周只有 <strong>9/21–9/24 四个交易日</strong>（9 月 25 日中秋休市），再往后 9/28–9/30 三天就进入国庆长假，<strong>10 月 1 日至 7 日休市，10 月 8 日开盘</strong>。而美光财报正好落在 10 月 1 日假期中间。这意味着：节前资金通常会降低暴露，半导体的脉冲行情很难在节前继续放大；真正的方向要等 10 月 8 日开盘一次性反映假期里的全球消息，两个方向都有跳空的可能。因此对已经涨了 <span class="num up">+11.6%</span> 的设备 ETF，现在的位置<strong>不适合追高</strong>，回调到 50 日线附近才重新具备性价比。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>观点清单</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>市场</th><th>标的</th><th>细分</th><th>周期</th><th>信心</th><th>逻辑与失效条件</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>美股</td><td class="n">AMAT / LRCX / KLAC</td><td>半导体设备</td><td>1–2 周</td><td><span class="pill hi">中</span></td>
+            <td>周五放量反弹、20 日仍 <span class="num down">-5.9%</span>、位置在 50 日线下方；存储扩产传导至 WFE。失效：10 年美债破 5.2%，或存储报价转弱。</td>
+          </tr>
+          <tr>
+            <td>美股</td><td class="n">MU</td><td>存储 / HBM</td><td>1–2 周</td><td><span class="pill hi">中</span></td>
+            <td>10 月 1 日财报为催化剂，短期缺货有数据支撑。失效：财报指引低于预期；中期注意长鑫科技的供给压力。</td>
+          </tr>
+          <tr>
+            <td>美股</td><td class="n">AVGO</td><td>定制 ASIC</td><td>1–2 周</td><td><span class="pill hi">中</span></td>
+            <td>同组小票涨 4%–8% 而它 <span class="num down">-1.2%</span>，RSI 46。失效：跌破本周低点或订单推迟消息。</td>
+          </tr>
+          <tr>
+            <td>美股</td><td class="n">CIBR</td><td>网络安全</td><td>1–2 周</td><td><span class="pill">中</span></td>
+            <td>新高附近、与利率脱敏，加息环境下的独立趋势。失效：跌回 50 日线下方。</td>
+          </tr>
+          <tr>
+            <td>港股</td><td class="n">0981.HK 中芯国际</td><td>半导体</td><td>1–2 周</td><td><span class="pill">中</span></td>
+            <td>仍在 50 日线下方 <span class="num">-5.0%</span>，承接国产扩产逻辑，位置比 A 股同类干净。失效：A 股半导体板块转弱。</td>
+          </tr>
+          <tr>
+            <td>A股</td><td class="n">159516 半导体设备ETF</td><td>半导体设备</td><td>观察</td><td><span class="pill">—</span></td>
+            <td>方向对但本周已 <span class="num up">+11.6%</span>，且长假前资金收缩。回调到 50 日线附近再考虑。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">不参与：AI 电力与核电（CEG、VST、URA）在 10 年美债回落前无反转催化；模拟芯片（ON 本周放量下跌 <span class="num down">-8.1%</span>）；A 股传媒、消费。</p>
+  </section>
+
+  <section>
+    <h2>下周关键日程</h2>
+    <div class="cal">
+      <div class="cal-item"><span class="d">09-21 一</span><p>A 股、港股开盘。美联储 Goolsbee 讲话；芝加哥联储全国活动指数。闪迪正式进入标普100。</p></div>
+      <div class="cal-item"><span class="d">09-22 二</span><p>里奇蒙德联储制造业指数（前值 4）；美联储 Williams、Jefferson 讲话。</p></div>
+      <div class="cal-item"><span class="d">09-23 三</span><p><strong>标普全球 9 月 PMI 初值</strong>（制造业前值 53.9 / 预期 53.6，服务业前值 56.5）——加息后第一份实时景气数据，对利率敏感板块影响最大。</p></div>
+      <div class="cal-item"><span class="d">09-24 四</span><p>5 年期国债拍卖；Williams、Barkin 讲话；美股当日约 19 家公司财报（Costco、Accenture、Darden 等，非 AI 链）。<strong>A 股当周最后一个交易日。</strong></p></div>
+      <div class="cal-item"><span class="d">09-25 五</span><p>美国 8 月耐用品订单（前值 <span class="num up">+1.1%</span>）、密歇根大学消费者信心终值（5 年通胀预期前值 3.4%）。<strong>A 股中秋休市</strong>，港股正常交易。</p></div>
+      <div class="cal-item"><span class="d">10-01 四</span><p><strong>美光（MU）财报</strong>——存储这条主线的关键验证点，正好落在 A 股国庆休市期间（10/1–10/7，10/8 开盘），港股仅休市当天。</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>数据：美股来自雅虎财经，港股与 A 股来自腾讯行情，A 股板块榜来自新浪财经；均为 2026-09-18 收盘价，周度涨跌幅按最近 5 个交易日计算，板块为成分等权平均。新闻与催化剂经公开渠道核对。</p>
+    <p>本报告由 AI 基于公开行情数据生成，仅供参考，不构成投资建议。</p>
+  </footer>
+
+</div>
+
+
+<style>
+  :root {
+    --bg: #ffffff; --surface: #ffffff; --surface-2: #f2f1ed;
+    --ink: #16181c; --ink-2: #33383f; --muted: #6a707a;
+    --line: #d9d6ce; --line-strong: #b9b5ab;
+    --accent: #1f4e79; --accent-soft: #eaf1f7;
+    --up: #c1272d; --down: #0f7a52;
+    --serif: "Songti SC", "SimSun", Georgia, serif;
+    --sans: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+    --mono: Consolas, "Courier New", "Microsoft YaHei", monospace;
+  }
+  @page { size: A4; margin: 14mm 12mm 12mm; }
+  body { background: #fff; font-size: 10.5pt; line-height: 1.65; }
+  .wrap { max-width: none; padding-inline: 0; padding-block: 0 0; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 14pt; margin-top: 20pt; break-after: avoid; page-break-after: avoid; }
+  h3 { font-size: 12pt; break-after: avoid; page-break-after: avoid; }
+  h4 { break-after: avoid; page-break-after: avoid; }
+  section, figure, .callout, .market-card, .keypoints li, .table-wrap, .cal-item {
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .snapshot { grid-template-columns: repeat(3, 1fr); }
+  table { min-width: 0; font-size: 9.5pt; }
+  .table-wrap { overflow: visible; }
+  td, th { padding: 6px 8px; }
+  a { color: inherit; text-decoration: none; }
+  footer { margin-top: 24pt; }
+</style>
+
+</body>
+</html>
