@@ -1,43 +1,32 @@
-# 每日股市简报
+# 股市简报
 
-每个股票交易日北京时间 18:30 自动发送一封中文邮件：复盘过去 24 小时内开过市的美股、港股、A股，并展望下一交易日的板块机会。内容以美股 AI 科技与半导体为重点。
+复盘美股、港股、A股走势并展望后续板块机会，内容以美股 AI 科技与半导体为重点。
+
+> **当前用法：每周手动生成周报**（`weekly-brief` 技能）。
+> 原先的「每日 18:30 自动发邮件」方案因为拿不到 Anthropic API Key 已经停用，GitHub Actions 定时任务（`.github/workflows/daily_brief.yml`）已删除，仓库里不再有任何自动运行的东西。
+> 日报代码（`main.py` 及 `brief/analyst.py`、`brief/mailer.py`）保留着，配好 API Key 和 SMTP 授权码后仍可手动运行；要恢复定时任务，用 `git show 61807b2:.github/workflows/daily_brief.yml > .github/workflows/daily_brief.yml` 取回。
+
+## 周报（当前在用）
+
+在任意会话里说「请生成每周股市简报」或 `/weekly-brief`，会依次：抓三地行情 → 联网核实涨跌原因与下周催化剂 → 按固定规则写报告 → 发布成网页 → 导出 PDF 到 `reports/` → 存档。规则写在 `.claude/skills/weekly-brief/SKILL.md`（同一份也放在 `~/.claude/skills/` 供全局使用）。
+
+手动生成数据包和 PDF：
+
+```bash
+.venv/Scripts/python -m brief.weekly                      # 输出 out/weekly_data.md
+.venv/Scripts/python -m brief.to_pdf <周报HTML> --date YYYY-MM-DD   # 输出 reports/weekly-*.pdf
+```
+
+## 日报（已停用，保留代码）
 
 - **交易日判定**：北京时间 T 日 18:30 之前的 24 小时内，三地至少有一个市场开过市（美股看纽约日期 T-1，港股、A股看 T 日）。以当天是否真的有 K 线为准，取不到数据时改用交易所日历。
 - **数据**：美股来自雅虎财经；港股、A股来自腾讯行情，取不到时依次换用新浪（A股）、雅虎（港股）；A股行业/概念板块榜来自新浪。
 - **分析**：Claude Opus 5 加网络搜索。行情表是数字的唯一来源，搜索只用来查异动原因和近期催化剂。
 - **邮件**：顶部是程序生成的行情快照（红涨绿跌），中间是分析正文，底部是近期推荐跟踪。
 
-## 部署
+要手动跑一次日报，需要先设置这几个环境变量：`ANTHROPIC_API_KEY`（console.anthropic.com 创建）、`SMTP_USER`（发件 QQ 邮箱）、`SMTP_PASS`（QQ 邮箱 → 设置 → 账号 → POP3/SMTP 服务 → 生成的授权码，不是 QQ 密码）、`MAIL_TO`（收件邮箱），然后 `python main.py --no-wait`。每封的 API 费用约 0.8–1.5 美元，运行日志里会打印实际用量。
 
-1. 在 GitHub 新建**私有**仓库，把本目录推上去。
-2. 在仓库的 Settings → Secrets and variables → Actions → New repository secret 里添加：
-
-   | Name | 值 |
-   |---|---|
-   | `ANTHROPIC_API_KEY` | 在 console.anthropic.com 创建的 API Key |
-   | `SMTP_USER` | 发件 QQ 邮箱，如 `819320358@qq.com` |
-   | `SMTP_PASS` | QQ 邮箱授权码（设置 → 账号 → POP3/SMTP 服务 → 生成授权码），不是 QQ 密码 |
-   | `MAIL_TO` | 收件邮箱 |
-
-3. 在 Actions 页面手动运行一次 **每日股市简报**，确认能正常工作（见下一节）。之后每天会自动运行。
-
-## 手动测试（Actions → 每日股市简报 → Run workflow）
-
-| 选项 | 作用 |
-|---|---|
-| `dry_run`（默认勾选） | 只生成预览，不发邮件。运行结束后在该次运行页面底部的 Artifacts 下载 `preview`，里面有 `preview.html`（邮件效果）、`report.md`（正文）、`prompt.md`（给 Claude 的输入）。 |
-| `force` | 周末、节假日也能测：用各市场最近一个交易日的数据生成。 |
-| `skip_llm` | 不调用 Claude，只测数据抓取和邮件排版，不产生 API 费用。 |
-| `archive` | 发送后存档。默认不存档，这样白天的测试不会挡住当晚 18:30 的定时发送。 |
-
-想收到一封真实的测试邮件：取消勾选 `dry_run`，并勾选 `force`。
-
-## 运行机制
-
-- 定时任务在北京时间 18:05 触发，生成大约需要 5–10 分钟，然后等到 18:30 发送。GitHub 的定时任务经常延迟，所以 18:35 还有一次兜底触发：如果当天已经发送过，它会直接退出。
-- 发送后，报告和推荐会存到 `reports/` 并提交回仓库。这份存档用来防止重复发送、在第二天的分析里保持观点连贯，以及计算推荐的后续表现。
-- Claude 分析失败时，仍然会发一封只含行情快照的邮件。
-- 运行日志里会打印每次的 token 用量和估算费用，大约每封 0.8–1.5 美元。
+分析失败时仍会发一封只含行情快照的降级邮件；发送后报告和推荐存到 `reports/`，用于防重复、保持观点连贯和计算推荐的后续表现。
 
 ## 本地运行
 
